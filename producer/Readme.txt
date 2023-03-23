@@ -4,10 +4,8 @@ zookeeper-server-start.bat ../../config/zookeeper.properties
 
 kafka-server-start.bat ../../config/server.properties
 
-kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+kafka-topics.bat --create --topic quickstart-events --bootstrap-server localhost:9092
 
-kafka-topics.bat --list --zookeeper localhost:2181
-
-kafka-console-producer.bat --broker-list localhost:9092 --topic test
-
-kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic test --from-beginning
+kafka-topics.bat --describe --topic quickstart-events --bootstrap-server localhost:9092
+kafka-console-producer.bat -topic quickstart-events --bootstrap-server localhost:9092
+kafka-console-consumer.bat --topic quickstart-events --from-beginning --bootstrap-server localhost:9092
